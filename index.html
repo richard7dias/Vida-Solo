@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vida Solo — Início</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">🏡</span>
+      <h1>Vida Solo</h1>
+    </div>
+
+    <nav class="tabs" aria-label="Navegação principal">
+      <button class="tab-button is-active" data-target="home" aria-selected="true">Home</button>
+      <button class="tab-button" data-target="todo" aria-selected="false">ToDo</button>
+      <button class="tab-button" data-target="services" aria-selected="false">Serviços</button>
+    </nav>
+  </header>
+
+  <main class="app-main">
+    <!-- HOME -->
+    <section id="home" class="view is-visible" role="region" aria-labelledby="home-title">
+      <h2 id="home-title">Bem-vindo(a) ao Vida Solo</h2>
+      <p>
+        Este é um sistema simples para te ajudar a gerenciar a vida morando sozinho(a):
+      </p>
+      <ul>
+        <li><strong>ToDo</strong>: anote tarefas rápidas do dia a dia.</li>
+        <li><strong>Serviços</strong>: guarde contatos de prestadores (água, encanador, etc.).</li>
+      </ul>
+      <p class="muted">
+        * Seus dados ficam apenas no seu navegador (usamos localStorage).
+      </p>
+    </section>
+
+    <!-- TODO -->
+    <section id="todo" class="view" role="region" aria-labelledby="todo-title" hidden>
+      <h2 id="todo-title">Lista de Tarefas</h2>
+
+      <form id="todo-form" class="row gap" autocomplete="off">
+        <label class="sr-only" for="todo-input">Nova tarefa</label>
+        <input id="todo-input" type="text" placeholder="Ex.: Comprar frutas" maxlength="120" required />
+        <button type="submit" class="btn primary">Adicionar</button>
+      </form>
+
+      <div class="toolbar">
+        <div class="filters" role="group" aria-label="Filtros">
+          <button class="chip is-active" data-filter="all">Todas</button>
+          <button class="chip" data-filter="open">Abertas</button>
+          <button class="chip" data-filter="done">Concluídas</button>
+        </div>
+        <button id="todo-clear" class="btn danger outline">Limpar concluídas</button>
+      </div>
+
+      <ul id="todo-list" class="list" aria-live="polite" aria-label="Tarefas"></ul>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="services" class="view" role="region" aria-labelledby="services-title" hidden>
+      <h2 id="services-title">Prestadores de Serviços</h2>
+
+      <form id="service-form" class="grid-2 gap" autocomplete="off">
+        <div class="field">
+          <label for="svc-name">Nome *</label>
+          <input id="svc-name" type="text" placeholder="Ex.: João da Água" required />
+        </div>
+
+        <div class="field">
+          <label for="svc-type">Tipo de serviço *</label>
+          <input id="svc-type" type="text" placeholder="Ex.: Entregador de água" required />
+        </div>
+
+        <div class="field">
+          <label for="svc-contact">Contato *</label>
+          <input id="svc-contact" type="text" placeholder="Telefone, WhatsApp ou Email" required />
+        </div>
+
+        <div class="field actions-end">
+          <button type="submit" class="btn primary">Salvar</button>
+          <button type="reset" id="service-cancel" class="btn outline">Cancelar</button>
+        </div>
+
+        <!-- Campo oculto para modo edição -->
+        <input type="hidden" id="svc-id" />
+      </form>
+
+      <div class="table-wrap">
+        <table class="table" aria-label="Lista de prestadores">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Tipo</th>
+              <th>Contato</th>
+              <th class="col-actions">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="services-tbody">
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <small>© <span id="year"></span> Vida Solo — Script Supremo 2025</small>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
