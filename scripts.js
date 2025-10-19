@@ -259,9 +259,12 @@
     if (data.id) {
       services = services.map((s) => (s.id === data.id ? { ...s, ...data } : s));
     } else {
+      const { name, type, contact } = data;
       services.unshift({
         id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
-        ...data,
+        name,
+        type,
+        contact,
         createdAt: Date.now(),
       });
     }
@@ -296,12 +299,4 @@
   });
 
   renderServices();
-
-  /* ---------- Acesso via hash (opcional): #todo ou #services ---------- */
-  function applyHashRoute() {
-    const hash = (location.hash || "").replace("#", "").toLowerCase();
-    if (hash && views[hash]) showView(hash);
-  }
-  addEventListener("hashchange", applyHashRoute);
-  applyHashRoute();
 })();
